@@ -15,6 +15,7 @@ export const categories: Category[] = [
     tagline: "Direct-to-film, vivid on anything.",
     desc: "DTF prints for apparel, fabric and accessories — soft-hand finish, durable wash and brilliant colour.",
     color: "bg-c-coral",
+
     subcategories: [
       { slug: "t-shirt-printing", name: "T-Shirt Printing", desc: "Custom DTF t-shirts in any colour or quantity." },
       { slug: "dtf-stickers-printing", name: "DTF Stickers Printing", desc: "Heat-transfer stickers for fabrics and apparel." },
@@ -106,7 +107,8 @@ export const categories: Category[] = [
     name: "Large Format Digital Printing",
     tagline: "Big formats, sharp finish.",
     desc: "Hoardings, banners, vehicle graphics and event displays — large-format printing up to 5m wide.",
-    color: "bg-c-coral",
+    color: "bg-c-magenta text-c-cream",
+
     subcategories: [
       { slug: "hoarding", name: "Hoarding", desc: "Large construction and event hoardings." },
       { slug: "small-hoarding", name: "Small Hoarding", desc: "Compact hoarding panels for small sites." },
