@@ -195,12 +195,27 @@
 
 @theme inline {
   --color-c-coral: var(--c-coral);
+  --color-c-coral-soft: var(--c-coral-soft);
   --color-c-marigold: var(--c-marigold);
+  --color-c-marigold-soft: var(--c-marigold-soft);
   --color-c-cobalt: var(--c-cobalt);
+  --color-c-cobalt-soft: var(--c-cobalt-soft);
   --color-c-mint: var(--c-mint);
+  --color-c-mint-soft: var(--c-mint-soft);
   --color-c-plum: var(--c-plum);
+  --color-c-plum-soft: var(--c-plum-soft);
   --color-c-cream: var(--c-cream);
   --color-c-ink: var(--c-ink);
+  --color-c-magenta: var(--c-magenta);
+  --color-c-teal: var(--c-teal);
+  --color-c-teal-deep: var(--c-teal-deep);
+  --color-c-gold: var(--c-gold);
+  --color-c-gold-deep: var(--c-gold-deep);
+  --color-c-blush: var(--c-blush);
+  --color-c-lavender: var(--c-lavender);
+  --color-c-forest: var(--c-forest);
+  --color-c-sand: var(--c-sand);
+  --color-c-paper: var(--c-paper);
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
 }
@@ -210,6 +225,56 @@
   to { transform: translateX(-50%); }
 }
 
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(2%, -3%) scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
 .marquee-track {
   animation: marquee 30s linear infinite;
 }
+
+.bg-grad-sunset { background: var(--grad-sunset); }
+.bg-grad-citrus { background: var(--grad-citrus); }
+.bg-grad-ocean { background: var(--grad-ocean); }
+.bg-grad-meadow { background: var(--grad-meadow); }
+.bg-grad-aurora { background: var(--grad-aurora); }
+
+.shadow-card { box-shadow: var(--shadow-card); }
+.shadow-soft { box-shadow: var(--shadow-soft); }
+.shadow-glow-coral { box-shadow: var(--shadow-glow-coral); }
+.shadow-glow-cobalt { box-shadow: var(--shadow-glow-cobalt); }
+
+.text-grad-sunset {
+  background: var(--grad-sunset);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mesh-bg {
+  background-color: var(--c-paper);
+  background-image:
+    radial-gradient(at 12% 8%, oklch(0.72 0.19 30 / 0.18) 0px, transparent 45%),
+    radial-gradient(at 88% 14%, oklch(0.82 0.17 75 / 0.20) 0px, transparent 45%),
+    radial-gradient(at 78% 88%, oklch(0.55 0.22 260 / 0.15) 0px, transparent 50%),
+    radial-gradient(at 18% 90%, oklch(0.85 0.13 165 / 0.18) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, oklch(0.62 0.24 350 / 0.10) 0px, transparent 55%);
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image: radial-gradient(oklch(0.14 0.02 60) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
