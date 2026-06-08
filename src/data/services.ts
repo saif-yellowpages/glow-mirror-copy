@@ -107,7 +107,8 @@ export const categories: Category[] = [
     name: "Large Format Digital Printing",
     tagline: "Big formats, sharp finish.",
     desc: "Hoardings, banners, vehicle graphics and event displays — large-format printing up to 5m wide.",
-    color: "bg-c-coral",
+    color: "bg-c-magenta text-c-cream",
+
     subcategories: [
       { slug: "hoarding", name: "Hoarding", desc: "Large construction and event hoardings." },
       { slug: "small-hoarding", name: "Small Hoarding", desc: "Compact hoarding panels for small sites." },
