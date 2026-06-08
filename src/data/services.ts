@@ -135,9 +135,12 @@ export const socialLinks = [
 ];
 
 export const contactInfo = {
-  address: "Shop - 3, D Block, 7th Street, MW5, Musaffah, Abu Dhabi",
-  phone: "+971 50 000 0000",
-  whatsapp: "+971500000000",
+  address: "Shop S3, D Block, MW5, Opposite Fibrex, Musaffah, Abu Dhabi (P.O. Box 53869)",
+  phone: "+971 2 634 9366",
+  mobile: "+971 55 884 9073",
+  mobile2: "+971 56 331 8655",
+  whatsapp: "+971558849073",
   email: "info@coloursadvertising.ae",
-  mapsQuery: "MW5+Musaffah+Abu+Dhabi",
+  mapsQuery: "Colours+Advertising+Agency+Musaffah+Abu+Dhabi",
+  mapsEmbed: "https://www.google.com/maps?q=Colours+Advertising+Agency,+MW5,+Musaffah,+Abu+Dhabi&ll=24.3423799,54.4674762&z=17&output=embed",
 };
