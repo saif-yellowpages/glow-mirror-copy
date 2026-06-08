@@ -1,26 +1,218 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Play, Download, Star, ArrowRight, Quote } from "lucide-react";
+import { categories } from "@/data/services";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Colours Advertising Agency — Printing, Signage & Branding in Abu Dhabi" },
+      { name: "description", content: "Full-service printing, signage, branding, vehicle wraps, exhibition stands and promotional gifts from Musaffah, Abu Dhabi." },
+      { property: "og:title", content: "Colours Advertising Agency — Abu Dhabi" },
+      { property: "og:description", content: "Printing, signage, branding and promotional services across the UAE." },
+    ],
+  }),
+  component: HomePage,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+const videos = [
+  { title: "Vehicle wrap, end to end", duration: "1:24", color: "bg-c-coral" },
+  { title: "Exhibition stand build", duration: "2:08", color: "bg-c-cobalt text-c-cream" },
+  { title: "Inside our print shop", duration: "1:46", color: "bg-c-marigold" },
+  { title: "LED signage install", duration: "0:58", color: "bg-c-mint" },
+];
+
+const reviews = [
+  {
+    quote: "Colours turned around 200 branded gift boxes for our launch in 4 days. Quality was spotless and the team kept us in the loop the whole time.",
+    name: "Hanan A.", role: "Marketing Lead, Etihad Mall Tenant",
+  },
+  {
+    quote: "We've used Colours for vehicle wraps on our entire fleet. Three years in, the wraps still look factory-fresh.",
+    name: "Rashid M.", role: "Operations Director, Logistics Co.",
+  },
+  {
+    quote: "From logo to signage to printed menus — they handled the whole opening of our restaurant. Easy to work with and very fairly priced.",
+    name: "Layla S.", role: "Owner, Café Olea",
+  },
+];
+
+const stats = [
+  { n: "12+", l: "Years in Abu Dhabi" },
+  { n: "850+", l: "Brands served" },
+  { n: "6", l: "Service categories" },
+  { n: "24/7", l: "Production lines" },
+];
+
+function HomePage() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div>
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        <div className="mx-auto max-w-7xl px-5 pt-16 pb-20 md:pt-28 md:pb-32">
+          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs uppercase tracking-widest text-muted-foreground">
+            <span className="size-2 rounded-full bg-accent" /> Advertising Agency · Musaffah, Abu Dhabi
+          </p>
+          <h1 className="font-display text-[12vw] leading-[0.95] md:text-[8.5rem]">
+            Printing, signage<br />
+            &amp; branding with<br />
+            <span className="italic text-c-coral">colour</span>,
+            <span className="italic text-c-cobalt"> craft</span> &amp;
+            <span className="italic text-c-marigold"> care</span>.
+          </h1>
+          <p className="mt-8 max-w-xl text-base md:text-lg text-muted-foreground">
+            One studio for everything your brand puts in front of people — from a single business card to a fleet of branded trucks. Based in Musaffah, delivering across the UAE.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center gap-3">
+            <Link to="/services" className="inline-flex items-center gap-2 rounded-full bg-c-ink px-6 py-3 text-sm text-c-cream transition hover:bg-accent">
+              Explore services <ArrowRight size={16} />
+            </Link>
+            <a href="#brochure" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:border-c-ink">
+              <Download size={16} /> Download brochure
+            </a>
+          </div>
+        </div>
+
+        {/* Marquee */}
+        <div className="border-y border-border bg-c-cream py-5 overflow-hidden">
+          <div className="marquee-track flex w-max gap-10 whitespace-nowrap font-display text-2xl md:text-3xl text-c-ink/80">
+            {[...Array(2)].flatMap((_, j) =>
+              ["Offset Printing", "LED Signage", "Vehicle Wraps", "Brand Identity", "Exhibition Stands", "Corporate Gifts", "Large Format", "3D Letters"].map((c, i) => (
+                <span key={`${j}-${i}`} className="flex items-center gap-10">
+                  {c} <span className="size-2 rounded-full bg-accent" />
+                </span>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section className="mx-auto max-w-7xl px-5 py-20 md:py-28">
+        <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">What we do</p>
+            <h2 className="font-display text-4xl md:text-6xl max-w-2xl">Six things, done properly.</h2>
+          </div>
+          <Link to="/services" className="text-sm underline-offset-4 hover:underline self-start md:self-auto">
+            All services →
+          </Link>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {categories.map((c, i) => (
+            <Link
+              key={c.slug}
+              to="/services/$slug" params={{ slug: c.slug }}
+              className={`group relative overflow-hidden rounded-3xl ${c.color} p-7 transition hover:-translate-y-1`}
+            >
+              <p className="text-xs uppercase tracking-widest opacity-60">0{i + 1}</p>
+              <h3 className="font-display text-3xl mt-2">{c.name}</h3>
+              <p className="mt-3 text-sm opacity-80 line-clamp-3">{c.desc}</p>
+              <ArrowRight size={20} className="mt-8 opacity-70 group-hover:translate-x-1 transition" />
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* VIDEO GALLERY */}
+      <section className="bg-c-ink text-c-cream">
+        <div className="mx-auto max-w-7xl px-5 py-20 md:py-28">
+          <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="mb-3 text-xs uppercase tracking-widest text-c-cream/50">Behind the scenes</p>
+              <h2 className="font-display text-4xl md:text-6xl">Watch how we make it.</h2>
+            </div>
+            <p className="max-w-sm text-c-cream/70 text-sm">Short videos from our production floor, install crew and design studio.</p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {videos.map((v, i) => (
+              <button key={i} className={`group relative aspect-[3/4] overflow-hidden rounded-3xl ${v.color} text-left p-5 flex flex-col justify-between hover:-translate-y-1 transition`}>
+                <div className="flex justify-between items-start">
+                  <span className="text-xs uppercase tracking-widest opacity-70">Reel · {String(i + 1).padStart(2, "0")}</span>
+                  <span className="text-xs opacity-70">{v.duration}</span>
+                </div>
+                <div className="size-14 rounded-full bg-c-ink/90 text-c-cream grid place-items-center group-hover:scale-110 transition">
+                  <Play size={20} fill="currentColor" />
+                </div>
+                <p className="font-display text-2xl">{v.title}</p>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BROCHURE */}
+      <section id="brochure" className="mx-auto max-w-7xl px-5 py-20 md:py-28">
+        <div className="grid gap-8 md:grid-cols-12 items-center">
+          <div className="md:col-span-7">
+            <p className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">Brochure</p>
+            <h2 className="font-display text-4xl md:text-6xl">Take the full menu home.</h2>
+            <p className="mt-5 max-w-xl text-muted-foreground">
+              Our 24-page brochure covers every service, sample finishes, lead times and indicative pricing. Updated quarterly.
+            </p>
+            <a href="/brochure.pdf" download className="mt-8 inline-flex items-center gap-2 rounded-full bg-c-ink px-6 py-3 text-sm text-c-cream hover:bg-accent transition">
+              <Download size={16} /> Download brochure (PDF, 8MB)
+            </a>
+          </div>
+          <div className="md:col-span-5">
+            <div className="relative aspect-[3/4] rounded-3xl bg-c-marigold p-8 flex flex-col justify-between rotate-2 hover:rotate-0 transition">
+              <p className="font-display text-5xl leading-none text-c-ink">Colours<span className="text-c-coral">.</span></p>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-c-ink/60">Services brochure</p>
+                <p className="font-display text-2xl text-c-ink">Edition 04 · 2026</p>
+              </div>
+              <div className="absolute -bottom-4 -right-4 size-24 rounded-full bg-c-coral grid place-items-center text-c-cream font-display text-2xl rotate-12">
+                PDF
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STATS */}
+      <section className="bg-c-cream">
+        <div className="mx-auto max-w-7xl px-5 py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((s) => (
+            <div key={s.l}>
+              <p className="font-display text-5xl md:text-6xl text-c-ink">{s.n}</p>
+              <p className="text-sm text-muted-foreground mt-1">{s.l}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section className="mx-auto max-w-7xl px-5 py-20 md:py-28">
+        <div className="mb-12">
+          <p className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">Reviews</p>
+          <h2 className="font-display text-4xl md:text-6xl max-w-3xl">Kind words from folks we've worked with.</h2>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {reviews.map((r, i) => (
+            <article key={i} className="rounded-3xl border border-border p-7 bg-card">
+              <div className="flex gap-1 text-c-marigold mb-4">
+                {Array.from({ length: 5 }).map((_, k) => <Star key={k} size={16} fill="currentColor" />)}
+              </div>
+              <Quote size={28} className="text-accent mb-3" />
+              <p className="text-base leading-relaxed">{r.quote}</p>
+              <div className="mt-6 pt-5 border-t border-border">
+                <p className="font-medium">{r.name}</p>
+                <p className="text-sm text-muted-foreground">{r.role}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="mx-auto max-w-7xl px-5 pb-20">
+        <div className="rounded-3xl bg-c-coral p-10 md:p-16 text-center">
+          <h2 className="font-display text-4xl md:text-6xl">Got a project in mind?</h2>
+          <p className="mt-4 max-w-xl mx-auto text-c-ink/80">Tell us what you need — we'll get back within one working day with a clear quote.</p>
+          <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-c-ink px-6 py-3 text-sm text-c-cream hover:bg-c-cream hover:text-c-ink transition">
+            Start your enquiry <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
