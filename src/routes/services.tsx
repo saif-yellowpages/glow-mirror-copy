@@ -1,4 +1,4 @@
-import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { categories } from "@/data/services";
 
@@ -15,10 +15,6 @@ export const Route = createFileRoute("/services")({
 });
 
 function ServicesPage() {
-  const pathname = useRouterState({ select: (state) => state.location.pathname.replace(/\/$/, "") || "/" });
-
-  if (pathname !== "/services") return <Outlet />;
-
   return (
     <div className="mx-auto max-w-7xl px-5 py-16 md:py-28">
       <p className="mb-4 text-xs uppercase tracking-widest text-muted-foreground">Services</p>
