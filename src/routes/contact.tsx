@@ -117,7 +117,7 @@ function ContactPage() {
         <div className="rounded-3xl overflow-hidden border border-border">
           <iframe
             title="Colours Advertising location"
-            src={`https://www.google.com/maps?q=${encodeURIComponent(contactInfo.address)}&output=embed`}
+            src={contactInfo.mapsEmbed}
             width="100%" height="450" loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             className="block w-full"
