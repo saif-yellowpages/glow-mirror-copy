@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound, Outlet, useRouterState } from "@tansta
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { categories, type Category } from "@/data/services";
 
-export const Route = createFileRoute("/services/$slug")({
+export const Route = createFileRoute("/services_/$slug")({
   loader: ({ params }) => {
     const category = categories.find((c) => c.slug === params.slug);
     if (!category) throw notFound();
