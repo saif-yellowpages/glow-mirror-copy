@@ -258,35 +258,14 @@ function HomePage() {
       </section>
 
 
-      {/* REVIEWS */}
-      <section className="mx-auto max-w-7xl px-5 py-20 md:py-28">
-        <div className="mb-12">
-          <p className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">Reviews</p>
-          <h2 className="font-display text-4xl md:text-6xl max-w-3xl">Kind words from folks we've worked with.</h2>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {reviews.map((r, i) => (
-            <article key={i} className="rounded-3xl border border-border p-7 bg-card">
-              <div className="flex gap-1 text-c-marigold mb-4">
-                {Array.from({ length: 5 }).map((_, k) => <Star key={k} size={16} fill="currentColor" />)}
-              </div>
-              <Quote size={28} className="text-accent mb-3" />
-              <p className="text-base leading-relaxed">{r.quote}</p>
-              <div className="mt-6 pt-5 border-t border-border">
-                <p className="font-medium">{r.name}</p>
-                <p className="text-sm text-muted-foreground">{r.role}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-5 pb-20">
-        <div className="rounded-3xl bg-c-coral p-10 md:p-16 text-center">
-          <h2 className="font-display text-4xl md:text-6xl">Got a project in mind?</h2>
-          <p className="mt-4 max-w-xl mx-auto text-c-ink/80">Tell us what you need — we'll get back within one working day with a clear quote.</p>
-          <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-c-ink px-6 py-3 text-sm text-c-cream hover:bg-c-cream hover:text-c-ink transition">
+      <section className="mx-auto max-w-7xl px-5 pb-20 pt-4">
+        <div className="relative overflow-hidden rounded-3xl bg-grad-sunset p-10 md:p-16 text-center shadow-glow-coral">
+          <div aria-hidden className="pointer-events-none absolute -top-16 -left-16 size-64 rounded-full bg-c-marigold/40 blur-3xl" />
+          <div aria-hidden className="pointer-events-none absolute -bottom-16 -right-16 size-64 rounded-full bg-c-cobalt/40 blur-3xl" />
+          <h2 className="relative font-display text-4xl md:text-6xl text-c-cream">Got a project in mind?</h2>
+          <p className="relative mt-4 max-w-xl mx-auto text-c-cream/85">Tell us what you need — we'll get back within one working day with a clear quote.</p>
+          <Link to="/contact" className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-c-cream px-6 py-3 text-sm text-c-ink hover:bg-c-ink hover:text-c-cream transition">
             Start your enquiry <ArrowRight size={16} />
           </Link>
         </div>
@@ -294,3 +273,4 @@ function HomePage() {
     </div>
   );
 }
+
