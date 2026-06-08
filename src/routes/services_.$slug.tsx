@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { categories, type Category } from "@/data/services";
 
-export const Route = createFileRoute("/services/$slug")({
+export const Route = createFileRoute("/services_/$slug")({
   loader: ({ params }) => {
     const category = categories.find((c) => c.slug === params.slug);
     if (!category) throw notFound();
@@ -93,7 +93,6 @@ function CategoryPage() {
         </div>
       </section>
 
-      {/* Other categories */}
       <section className="mx-auto max-w-7xl px-5 pb-20">
         <p className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">Explore more</p>
         <h2 className="font-display text-3xl md:text-5xl mb-8">Other services.</h2>

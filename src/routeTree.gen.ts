@@ -14,8 +14,8 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ClienteleRouteImport } from './routes/clientele'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
-import { Route as ServicesSlugSubRouteImport } from './routes/services.$slug.$sub'
+import { Route as ServicesSlugRouteImport } from './routes/services_.$slug'
+import { Route as ServicesSlugSubRouteImport } from './routes/services_.$slug_.$sub'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -43,14 +43,14 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => ServicesRoute,
+  id: '/services_/$slug',
+  path: '/services/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesSlugSubRoute = ServicesSlugSubRouteImport.update({
-  id: '/$sub',
-  path: '/$sub',
-  getParentRoute: () => ServicesSlugRoute,
+  id: '/services_/$slug_/$sub',
+  path: '/services/$slug/$sub',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -58,8 +58,8 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/clientele': typeof ClienteleRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRouteWithChildren
-  '/services/$slug': typeof ServicesSlugRouteWithChildren
+  '/services': typeof ServicesRoute
+  '/services/$slug': typeof ServicesSlugRoute
   '/services/$slug/$sub': typeof ServicesSlugSubRoute
 }
 export interface FileRoutesByTo {
@@ -67,8 +67,8 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/clientele': typeof ClienteleRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRouteWithChildren
-  '/services/$slug': typeof ServicesSlugRouteWithChildren
+  '/services': typeof ServicesRoute
+  '/services/$slug': typeof ServicesSlugRoute
   '/services/$slug/$sub': typeof ServicesSlugSubRoute
 }
 export interface FileRoutesById {
@@ -77,9 +77,9 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/clientele': typeof ClienteleRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRouteWithChildren
-  '/services/$slug': typeof ServicesSlugRouteWithChildren
-  '/services/$slug/$sub': typeof ServicesSlugSubRoute
+  '/services': typeof ServicesRoute
+  '/services_/$slug': typeof ServicesSlugRoute
+  '/services_/$slug_/$sub': typeof ServicesSlugSubRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,8 +107,8 @@ export interface FileRouteTypes {
     | '/clientele'
     | '/contact'
     | '/services'
-    | '/services/$slug'
-    | '/services/$slug/$sub'
+    | '/services_/$slug'
+    | '/services_/$slug_/$sub'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -116,7 +116,9 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ClienteleRoute: typeof ClienteleRoute
   ContactRoute: typeof ContactRoute
-  ServicesRoute: typeof ServicesRouteWithChildren
+  ServicesRoute: typeof ServicesRoute
+  ServicesSlugRoute: typeof ServicesSlugRoute
+  ServicesSlugSubRoute: typeof ServicesSlugSubRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -156,64 +158,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/$slug': {
-      id: '/services/$slug'
-      path: '/$slug'
+    '/services_/$slug': {
+      id: '/services_/$slug'
+      path: '/services/$slug'
       fullPath: '/services/$slug'
       preLoaderRoute: typeof ServicesSlugRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/services/$slug/$sub': {
-      id: '/services/$slug/$sub'
-      path: '/$sub'
+    '/services_/$slug_/$sub': {
+      id: '/services_/$slug_/$sub'
+      path: '/services/$slug/$sub'
       fullPath: '/services/$slug/$sub'
       preLoaderRoute: typeof ServicesSlugSubRouteImport
-      parentRoute: typeof ServicesSlugRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface ServicesSlugRouteChildren {
-  ServicesSlugSubRoute: typeof ServicesSlugSubRoute
-}
-
-const ServicesSlugRouteChildren: ServicesSlugRouteChildren = {
-  ServicesSlugSubRoute: ServicesSlugSubRoute,
-}
-
-const ServicesSlugRouteWithChildren = ServicesSlugRoute._addFileChildren(
-  ServicesSlugRouteChildren,
-)
-
-interface ServicesRouteChildren {
-  ServicesSlugRoute: typeof ServicesSlugRouteWithChildren
-}
-
-const ServicesRouteChildren: ServicesRouteChildren = {
-  ServicesSlugRoute: ServicesSlugRouteWithChildren,
-}
-
-const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
-  ServicesRouteChildren,
-)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ClienteleRoute: ClienteleRoute,
   ContactRoute: ContactRoute,
-  ServicesRoute: ServicesRouteWithChildren,
+  ServicesRoute: ServicesRoute,
+  ServicesSlugRoute: ServicesSlugRoute,
+  ServicesSlugSubRoute: ServicesSlugSubRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
