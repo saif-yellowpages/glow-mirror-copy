@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { SiteHeader, SiteFooter } from "../components/SiteHeader";
+import { FloatingCTA } from "../components/FloatingCTA";
 
 function NotFoundComponent() {
   return (
@@ -72,19 +74,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Colours Advertising Agency — Printing, Signage & Branding in Abu Dhabi" },
+      { name: "description", content: "Colours Advertising Agency in Musaffah, Abu Dhabi delivers printing, signage, branding, vehicle wraps, exhibition stands and promotional gifts across the UAE." },
+      { name: "author", content: "Colours Advertising Agency" },
+      { property: "og:title", content: "Colours Advertising Agency — Printing, Signage & Branding in Abu Dhabi" },
+      { property: "og:description", content: "Colours Advertising Agency in Musaffah, Abu Dhabi delivers printing, signage, branding, vehicle wraps, exhibition stands and promotional gifts across the UAE." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Colours Advertising Agency — Printing, Signage & Branding in Abu Dhabi" },
+      { name: "twitter:description", content: "Colours Advertising Agency in Musaffah, Abu Dhabi delivers printing, signage, branding, vehicle wraps, exhibition stands and promotional gifts across the UAE." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/454df3f5-f6ea-4f7f-b7d1-93e218d44d0f/id-preview-b4a92530--69043add-15a2-4b76-b134-ce47901e4081.lovable.app-1778492812962.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/454df3f5-f6ea-4f7f-b7d1-93e218d44d0f/id-preview-b4a92530--69043add-15a2-4b76-b134-ce47901e4081.lovable.app-1778492812962.png" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap",
       },
     ],
   }),
@@ -113,7 +125,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <SiteHeader />
+      <main>
+        <Outlet />
+      </main>
+      <SiteFooter />
+      <FloatingCTA />
     </QueryClientProvider>
   );
 }
