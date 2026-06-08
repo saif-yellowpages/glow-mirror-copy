@@ -1,6 +1,18 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Linkedin, Instagram, Facebook, Youtube, Music2, type LucideIcon } from "lucide-react";
+
+const socialIcons: Record<string, LucideIcon> = {
+  LinkedIn: Linkedin,
+  Instagram: Instagram,
+  Facebook: Facebook,
+  YouTube: Youtube,
+  Pinterest: (props) => (
+    // simple "P" pin glyph via lucide fallback
+    <Music2 {...(props as any)} />
+  ) as unknown as LucideIcon,
+  TikTok: Music2,
+};
 import { categories, contactInfo, socialLinks } from "@/data/services";
 import logoAsset from "@/assets/colours-logo.png.asset.json";
 const logo = logoAsset.url;
