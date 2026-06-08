@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { categories, type Category, type Subcategory } from "@/data/services";
 
-export const Route = createFileRoute("/services/$slug/$sub")({
+export const Route = createFileRoute("/services_/$slug_/$sub")({
   loader: ({ params }) => {
     const category = categories.find((c) => c.slug === params.slug);
     if (!category) throw notFound();
