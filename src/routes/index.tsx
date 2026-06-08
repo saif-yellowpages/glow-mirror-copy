@@ -190,17 +190,25 @@ function HomePage() {
             </a>
           </div>
           <div className="md:col-span-5">
-            <div className="relative aspect-[3/4] rounded-3xl bg-c-marigold p-8 flex flex-col justify-between rotate-2 hover:rotate-0 transition">
-              <p className="font-display text-5xl leading-none text-c-ink">Colours<span className="text-c-coral">.</span></p>
+            <div className="relative aspect-[3/4] rounded-3xl bg-grad-citrus p-8 flex flex-col justify-between rotate-2 hover:rotate-0 transition shadow-card">
+              <p className="font-display text-5xl leading-none text-c-ink">Colours<span className="text-c-magenta">.</span></p>
+              <div className="flex gap-1.5">
+                <span className="size-3 rounded-full bg-c-coral" />
+                <span className="size-3 rounded-full bg-c-cobalt" />
+                <span className="size-3 rounded-full bg-c-mint" />
+                <span className="size-3 rounded-full bg-c-magenta" />
+                <span className="size-3 rounded-full bg-c-plum" />
+              </div>
               <div>
                 <p className="text-xs uppercase tracking-widest text-c-ink/60">Services brochure</p>
                 <p className="font-display text-2xl text-c-ink">Edition 04 · 2026</p>
               </div>
-              <div className="absolute -bottom-4 -right-4 size-24 rounded-full bg-c-coral grid place-items-center text-c-cream font-display text-2xl rotate-12">
+              <div className="absolute -bottom-4 -right-4 size-24 rounded-full bg-c-ink grid place-items-center text-c-cream font-display text-2xl rotate-12 shadow-glow-coral">
                 PDF
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
