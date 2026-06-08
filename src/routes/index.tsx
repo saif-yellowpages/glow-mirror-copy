@@ -48,10 +48,16 @@ function HomePage() {
   return (
     <div>
       {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-5 pt-16 pb-20 md:pt-28 md:pb-32">
-          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs uppercase tracking-widest text-muted-foreground">
-            <span className="size-2 rounded-full bg-accent" /> Advertising Agency · Musaffah, Abu Dhabi
+      <section className="relative overflow-hidden mesh-bg">
+        {/* Floating color blobs */}
+        <div aria-hidden className="pointer-events-none absolute -top-32 -left-24 size-[36rem] rounded-full bg-c-coral/30 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -top-20 right-0 size-[28rem] rounded-full bg-c-marigold/35 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute bottom-0 left-1/3 size-[30rem] rounded-full bg-c-cobalt/20 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-24 right-10 size-[26rem] rounded-full bg-c-mint/30 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-5 pt-16 pb-20 md:pt-28 md:pb-32">
+          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-c-ink/15 bg-c-paper/70 backdrop-blur px-4 py-1.5 text-xs uppercase tracking-widest text-c-ink/70">
+            <span className="size-2 rounded-full bg-grad-aurora" /> Advertising Agency · Musaffah, Abu Dhabi
           </p>
           <h1 className="font-display text-[12vw] leading-[0.95] md:text-[8.5rem]">
             Printing, signage<br />
@@ -60,32 +66,61 @@ function HomePage() {
             <span className="italic text-c-cobalt"> craft</span> &amp;
             <span className="italic text-c-marigold"> care</span>.
           </h1>
-          <p className="mt-8 max-w-xl text-base md:text-lg text-muted-foreground">
+          <p className="mt-8 max-w-xl text-base md:text-lg text-c-ink/70">
             One studio for everything your brand puts in front of people — from a single business card to a fleet of branded trucks. Based in Musaffah, delivering across the UAE.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <Link to="/services" className="inline-flex items-center gap-2 rounded-full bg-c-ink px-6 py-3 text-sm text-c-cream transition hover:bg-accent">
-              Explore services <ArrowRight size={16} />
+            <Link to="/services" className="group inline-flex items-center gap-2 rounded-full bg-c-ink px-6 py-3 text-sm text-c-cream transition hover:shadow-glow-coral hover:-translate-y-0.5">
+              Explore services <ArrowRight size={16} className="transition group-hover:translate-x-1" />
             </Link>
-            <a href="#brochure" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm hover:border-c-ink">
+            <a href="#brochure" className="inline-flex items-center gap-2 rounded-full border border-c-ink/20 bg-c-paper/70 backdrop-blur px-6 py-3 text-sm hover:border-c-ink transition">
               <Download size={16} /> Download brochure
             </a>
+          </div>
+
+          {/* Color chip strip */}
+          <div className="mt-14 flex flex-wrap items-center gap-3 text-xs uppercase tracking-widest text-c-ink/60">
+            <span className="opacity-70">Pantone-true output ·</span>
+            {[
+              { c: "bg-c-coral", n: "Coral" },
+              { c: "bg-c-marigold", n: "Marigold" },
+              { c: "bg-c-cobalt", n: "Cobalt" },
+              { c: "bg-c-mint", n: "Mint" },
+              { c: "bg-c-magenta", n: "Magenta" },
+              { c: "bg-c-plum", n: "Plum" },
+              { c: "bg-c-teal", n: "Teal" },
+              { c: "bg-c-gold", n: "Gold" },
+            ].map((s) => (
+              <span key={s.n} className="inline-flex items-center gap-2 rounded-full bg-c-paper/80 backdrop-blur border border-c-ink/10 px-3 py-1">
+                <span className={`size-2.5 rounded-full ${s.c}`} /> {s.n}
+              </span>
+            ))}
           </div>
         </div>
 
         {/* Marquee */}
-        <div className="border-y border-border bg-c-cream py-5 overflow-hidden">
-          <div className="marquee-track flex w-max gap-10 whitespace-nowrap font-display text-2xl md:text-3xl text-c-ink/80">
+        <div className="relative border-y border-c-ink/15 bg-c-ink text-c-cream py-5 overflow-hidden">
+          <div className="marquee-track flex w-max gap-10 whitespace-nowrap font-display text-2xl md:text-3xl">
             {[...Array(2)].flatMap((_, j) =>
-              ["Offset Printing", "LED Signage", "Vehicle Wraps", "Brand Identity", "Exhibition Stands", "Corporate Gifts", "Large Format", "3D Letters"].map((c, i) => (
+              [
+                { label: "Offset Printing", dot: "bg-c-coral" },
+                { label: "LED Signage", dot: "bg-c-mint" },
+                { label: "Vehicle Wraps", dot: "bg-c-marigold" },
+                { label: "Brand Identity", dot: "bg-c-magenta" },
+                { label: "Exhibition Stands", dot: "bg-c-cobalt" },
+                { label: "Corporate Gifts", dot: "bg-c-teal" },
+                { label: "Large Format", dot: "bg-c-gold" },
+                { label: "3D Letters", dot: "bg-c-plum" },
+              ].map((c, i) => (
                 <span key={`${j}-${i}`} className="flex items-center gap-10">
-                  {c} <span className="size-2 rounded-full bg-accent" />
+                  {c.label} <span className={`size-2.5 rounded-full ${c.dot}`} />
                 </span>
               ))
             )}
           </div>
         </div>
       </section>
+
 
       {/* SERVICES */}
       <section className="mx-auto max-w-7xl px-5 py-20 md:py-28">
