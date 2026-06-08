@@ -15,6 +15,7 @@ export const categories: Category[] = [
     tagline: "Direct-to-film, vivid on anything.",
     desc: "DTF prints for apparel, fabric and accessories — soft-hand finish, durable wash and brilliant colour.",
     color: "bg-c-coral",
+
     subcategories: [
       { slug: "t-shirt-printing", name: "T-Shirt Printing", desc: "Custom DTF t-shirts in any colour or quantity." },
       { slug: "dtf-stickers-printing", name: "DTF Stickers Printing", desc: "Heat-transfer stickers for fabrics and apparel." },
