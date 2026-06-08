@@ -1,6 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Linkedin, Instagram, Facebook, Youtube, Music2, Pin, type LucideIcon } from "lucide-react";
+
+const socialIcons: Record<string, LucideIcon> = {
+  LinkedIn: Linkedin,
+  Instagram: Instagram,
+  Facebook: Facebook,
+  YouTube: Youtube,
+  Pinterest: Pin,
+  TikTok: Music2,
+};
 import { categories, contactInfo, socialLinks } from "@/data/services";
 import logoAsset from "@/assets/colours-logo.png.asset.json";
 const logo = logoAsset.url;
@@ -125,14 +134,18 @@ export function SiteFooter() {
         <div className="md:col-span-2 text-sm">
           <p className="mb-4 text-c-cream/50 uppercase tracking-widest text-xs">Reach us</p>
           <a href={`tel:${contactInfo.phone}`} className="block hover:text-c-marigold">{contactInfo.phone}</a>
+          <a href={`tel:${contactInfo.mobile}`} className="block hover:text-c-marigold mt-1">{contactInfo.mobile}</a>
           <a href={`mailto:${contactInfo.email}`} className="block hover:text-c-marigold mt-1">{contactInfo.email}</a>
-          <div className="mt-4 flex gap-3">
-            {socialLinks.map((s) => (
-              <a key={s.name} href={s.url} aria-label={s.name}
-                 className="size-9 grid place-items-center rounded-full bg-c-cream/10 text-xs hover:bg-c-marigold hover:text-c-ink transition">
-                {s.name[0]}
-              </a>
-            ))}
+          <div className="mt-4 flex flex-wrap gap-3">
+            {socialLinks.map((s) => {
+              const Icon = socialIcons[s.name] ?? Pin;
+              return (
+                <a key={s.name} href={s.url} target="_blank" rel="noreferrer" aria-label={s.name}
+                   className="size-9 grid place-items-center rounded-full bg-c-cream/10 hover:bg-c-marigold hover:text-c-ink transition">
+                  <Icon size={16} />
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
