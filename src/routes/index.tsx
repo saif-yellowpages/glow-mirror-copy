@@ -18,8 +18,9 @@ const videos = [
   { title: "Vehicle wrap, end to end", duration: "1:24", color: "bg-c-coral" },
   { title: "Exhibition stand build", duration: "2:08", color: "bg-c-cobalt text-c-cream" },
   { title: "Inside our print shop", duration: "1:46", color: "bg-c-marigold" },
-  { title: "LED signage install", duration: "0:58", color: "bg-c-mint" },
+  { title: "LED signage install", duration: "0:58", color: "bg-c-teal text-c-cream" },
 ];
+
 
 const reviews = [
   {
