@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound, Outlet, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { categories, type Category } from "@/data/services";
 
@@ -36,9 +36,6 @@ const benefits = [
 
 function CategoryPage() {
   const { category } = Route.useLoaderData() as { category: Category };
-  const pathname = useRouterState({ select: (state) => state.location.pathname.replace(/\/$/, "") || "/" });
-
-  if (pathname !== `/services/${category.slug}`) return <Outlet />;
 
   return (
     <div>
