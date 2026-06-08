@@ -27,31 +27,43 @@ function ServicesPage() {
 
       <div className="mt-16 grid gap-5 md:grid-cols-2">
         {categories.map((c, i) => (
-          <Link
+          <div
             key={c.slug}
-            to="/services/$slug" params={{ slug: c.slug }}
             className={`group ${c.color} rounded-3xl p-8 md:p-10 transition hover:-translate-y-1 ${i % 2 ? "md:translate-y-10" : ""}`}
           >
             <div className="flex items-start justify-between">
               <p className="text-xs uppercase tracking-widest opacity-60">0{i + 1}</p>
-              <ArrowRight size={20} className="opacity-70 group-hover:translate-x-1 transition" />
+              <Link to="/services/$slug" params={{ slug: c.slug }} aria-label={`Open ${c.name}`}>
+                <ArrowRight size={20} className="opacity-70 group-hover:translate-x-1 transition" />
+              </Link>
             </div>
-            <h2 className="font-display text-3xl md:text-5xl mt-4">{c.name}</h2>
-            <p className="mt-2 italic opacity-80">{c.tagline}</p>
-            <p className="mt-4 text-sm opacity-75 max-w-md">{c.desc}</p>
+            <Link to="/services/$slug" params={{ slug: c.slug }} className="block">
+              <h2 className="font-display text-3xl md:text-5xl mt-4 hover:underline">{c.name}</h2>
+              <p className="mt-2 italic opacity-80">{c.tagline}</p>
+              <p className="mt-4 text-sm opacity-75 max-w-md">{c.desc}</p>
+            </Link>
             <div className="mt-6 flex flex-wrap gap-2">
               {c.subcategories.slice(0, 4).map((s) => (
-                <span key={s.slug} className="text-xs px-3 py-1 rounded-full bg-current/10 backdrop-blur-sm">
+                <Link
+                  key={s.slug}
+                  to="/services/$slug/$sub"
+                  params={{ slug: c.slug, sub: s.slug }}
+                  className="text-xs px-3 py-1 rounded-full bg-current/10 backdrop-blur-sm hover:bg-current/20 transition"
+                >
                   {s.name}
-                </span>
+                </Link>
               ))}
               {c.subcategories.length > 4 && (
-                <span className="text-xs px-3 py-1 rounded-full bg-current/10">
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: c.slug }}
+                  className="text-xs px-3 py-1 rounded-full bg-current/10 hover:bg-current/20 transition"
+                >
                   +{c.subcategories.length - 4} more
-                </span>
+                </Link>
               )}
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>
