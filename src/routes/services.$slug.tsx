@@ -57,14 +57,19 @@ function CategoryPage() {
             <h2 className="font-display text-3xl md:text-5xl mb-10">Everything we make in {category.name.toLowerCase()}.</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {category.subcategories.map((s, i) => (
-                <article key={s.slug} className="rounded-2xl border border-border p-6 bg-card hover:border-c-ink transition">
+                <Link
+                  key={s.slug}
+                  to="/services/$slug/$sub"
+                  params={{ slug: category.slug, sub: s.slug }}
+                  className="rounded-2xl border border-border p-6 bg-card hover:border-c-ink transition block"
+                >
                   <p className="font-display text-c-coral text-sm">0{i + 1}</p>
                   <h3 className="font-display text-2xl mt-1">{s.name}</h3>
                   <p className="text-sm text-muted-foreground mt-2">{s.desc}</p>
-                  <Link to="/contact" className="mt-4 inline-flex items-center gap-1 text-sm hover:text-accent">
-                    Get a quote <ArrowRight size={14} />
-                  </Link>
-                </article>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm">
+                    View details <ArrowRight size={14} />
+                  </span>
+                </Link>
               ))}
             </div>
           </div>
