@@ -213,16 +213,50 @@ function HomePage() {
       </section>
 
       {/* STATS */}
-      <section className="bg-c-cream">
-        <div className="mx-auto max-w-7xl px-5 py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((s) => (
-            <div key={s.l}>
-              <p className="font-display text-5xl md:text-6xl text-c-ink">{s.n}</p>
-              <p className="text-sm text-muted-foreground mt-1">{s.l}</p>
-            </div>
-          ))}
+      <section className="relative overflow-hidden bg-c-ink text-c-cream">
+        <div aria-hidden className="pointer-events-none absolute -top-20 left-1/4 size-[24rem] rounded-full bg-c-cobalt/30 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-20 right-1/4 size-[24rem] rounded-full bg-c-magenta/25 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-5 py-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((s, i) => {
+            const accents = ["text-c-coral", "text-c-marigold", "text-c-mint", "text-c-magenta"];
+            return (
+              <div key={s.l} className="border-l border-c-cream/15 pl-5">
+                <p className={`font-display text-5xl md:text-6xl ${accents[i]}`}>{s.n}</p>
+                <p className="text-sm text-c-cream/60 mt-2 uppercase tracking-widest">{s.l}</p>
+              </div>
+            );
+          })}
         </div>
       </section>
+
+      {/* REVIEWS */}
+      <section className="mx-auto max-w-7xl px-5 py-20 md:py-28">
+        <div className="mb-12">
+          <p className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">Reviews</p>
+          <h2 className="font-display text-4xl md:text-6xl max-w-3xl">Kind words from folks we've worked with.</h2>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {reviews.map((r, i) => {
+            const tints = ["bg-c-coral-soft", "bg-c-cobalt-soft", "bg-c-mint-soft"];
+            const bars = ["bg-c-coral", "bg-c-cobalt", "bg-c-mint"];
+            return (
+              <article key={i} className={`relative rounded-3xl p-7 ${tints[i]} overflow-hidden shadow-soft`}>
+                <span className={`absolute top-0 left-0 h-1 w-full ${bars[i]}`} />
+                <div className="flex gap-1 text-c-gold-deep mb-4">
+                  {Array.from({ length: 5 }).map((_, k) => <Star key={k} size={16} fill="currentColor" />)}
+                </div>
+                <Quote size={28} className="text-c-ink/40 mb-3" />
+                <p className="text-base leading-relaxed text-c-ink">{r.quote}</p>
+                <div className="mt-6 pt-5 border-t border-c-ink/10">
+                  <p className="font-medium text-c-ink">{r.name}</p>
+                  <p className="text-sm text-c-ink/60">{r.role}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
 
       {/* REVIEWS */}
       <section className="mx-auto max-w-7xl px-5 py-20 md:py-28">
